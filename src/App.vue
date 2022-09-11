@@ -2,66 +2,52 @@
   <div class="is-mobile is-tablet is-desktop">
     <nav aria-label="main navigation" class="navbar has-background-light "
          role="navigation">
-      <div class="navbar-brand">
-        <a aria-expanded="false" id="burger"
+      <div  class="navbar-brand">
+        <a id="burger" aria-expanded="false" v-bind:class="{ 'is-active' : showNav }"
            aria-label="menu" class="navbar-burger" data-target="navbarBasicExample"
+           v-on:click="activateNavbar" v-on:keydown="activateNavbar" tabindex="0"
            role="button">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div id="navbarBasicExample" class="navbar-menu">
-        <nav class="navbar" role="navigation" aria-label="dropdown navigation">
-          <div id="nav-items" class="navbar-item has-dropdown is-hoverable is-mobile">
-            <a class="navbar-link">
-              Menu
-            </a>
-            <div class="navbar-dropdown">
-              <router-link class="navbar-item has-text-weight-bold"
-                           v-bind:to="{ name: 'CreatorView' }">
-                Creator
-              </router-link>
-              <router-link class="navbar-item has-text-weight-bold"
-                           v-bind:to="{ name: 'home' }">
-                Home
-              </router-link>
-              <router-link
-                class="navbar-item has-text-weight-bold"
-                v-bind:to="{ name: 'AboutView' }"
-              >About
-              </router-link>
-              <router-link
-                v-if="this.$store.state.token === ''"
-                class="navbar-item has-text-weight-bold"
-                v-bind:to="{ name: 'SignupView' }"
-              >Sign Up
-              </router-link>
-            </div>
-          </div>
-        </nav>
-        <label for="darkMode" class="switch">
-          <input id="darkMode" type="checkbox">
-          <span class="slider round"></span>
-        </label>
-        <div class="navbar-end">
+      <div class="navbar-start">
+        <div class=" buttons has-text-weight-bold">
+        <router-link class="navbar-item has-text-weight-bold"
+                     v-bind:to="{ name: 'CreatorView' }">
+          Creator
+        </router-link>
+        <router-link class="navbar-item has-text-weight-bold"
+                     v-bind:to="{ name: 'home' }">
+          Home
+        </router-link>
+        <router-link
+          class="navbar-item has-text-weight-bold"
+          v-bind:to="{ name: 'AboutView' }"
+        >About
+        </router-link>
+        </div>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{ 'is-active' : showNav }">
+        <div class="navbar-end is-active">
           <div id="nav-item" class="navbar-item">
             <div class=" buttons has-text-weight-bold">
               <router-link
                 v-if="this.$store.state.token == ''"
-                class="button is-dark is-outlined"
+                class="button is-dark is-outlined navbar-item"
                 v-bind:to="{ name: 'LoginView' }"
               >Login
               </router-link>
               <router-link
                 v-if="this.$store.state.token !== ''"
-                class="button is-dark is-outlined"
+                class="button is-dark is-outlined navbar-item"
                 v-bind:to="{ name: 'ProfileView' }"
               >Profile
               </router-link>
               <button v-if="this.$store.state.token !== ''"
                       id="afficherDeconnexion"
-                      class="button is-dark is-danger has-text-weight-bold"
+                      class="button is-dark is-danger has-text-weight-bold navbar-item"
                       v-on:click="deconnexion"
               >
                 Logout
@@ -92,7 +78,9 @@
 export default {
     name: 'App',
     data() {
-        return {};
+        return {
+            showNav: false,
+        };
     },
     mounted() {
     // Au chargement de l'application, si token est dans sessionStorage, charger token
@@ -113,12 +101,7 @@ export default {
             this.$store.dispatch('storeToken', '');
         },
         activateNavbar() {
-            const burgerIcon = document.querySelector('#burger');
-            const navMenu = document.querySelector('#nav-item');
-
-            burgerIcon.addEventListener('click', () => {
-                navMenu.classList.toggle('is-active');
-            });
+            this.showNav = !this.showNav;
         },
     },
 };

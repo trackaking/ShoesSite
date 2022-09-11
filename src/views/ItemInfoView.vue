@@ -57,7 +57,6 @@ export default {
             if (response.ok) {
                 // eslint-disable-next-line
           this.info = await response.json();
-                console.log(this.info);
             } else {
                 console.log(" une erreur s'est produite");
             }

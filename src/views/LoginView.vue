@@ -91,8 +91,6 @@ export default {
                     console.log('Successfully Logged in ');
                     const auth = getAuth();
                     const user = auth.currentUser;
-                    // const { displayName } = user.displayName;
-                    // console.log(displayName);
                     const { token } = await user.getIdTokenResult();
                     this.$store.dispatch('storeToken', token);
                     this.$router.push('/');
@@ -100,7 +98,7 @@ export default {
                     // eslint-disable-next-line default-case
                     switch (error.code) {
                     case 'auth/invalid-email':
-                        this.errMsg += 'Invalid email';
+                        this.modal.errorMessage += 'Invalid email';
                     }
                     console.log(error.message);
                     alert(error.message);

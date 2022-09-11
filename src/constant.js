@@ -1,4 +1,4 @@
-const svrURL = 'http://localhost:3000';
+const svrURL = 'https://trackaking.herokuapp.com';
 
 function ValiderUsername() {
     // eslint-disable-next-line prefer-regex-literals
