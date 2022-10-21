@@ -13,26 +13,24 @@
         </a>
       </div>
       <div class="navbar-start">
-        <div class=" buttons has-text-weight-bold">
-        <router-link class="navbar-item has-text-weight-bold"
-                     v-bind:to="{ name: 'CreatorView' }">
-          Creator
-        </router-link>
-        <router-link class="navbar-item has-text-weight-bold"
-                     v-bind:to="{ name: 'home' }">
-          Home
-        </router-link>
-        <router-link
-          class="navbar-item has-text-weight-bold"
-          v-bind:to="{ name: 'AboutView' }"
-        >About
-        </router-link>
-        </div>
       </div>
       <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{ 'is-active' : showNav }">
         <div class="navbar-end is-active">
           <div id="nav-item" class="navbar-item">
             <div class=" buttons has-text-weight-bold">
+              <router-link class="navbar-item has-text-weight-bold"
+                           v-bind:to="{ name: 'CreatorView' }">
+                Creator
+              </router-link>
+              <router-link class="navbar-item has-text-weight-bold"
+                           v-bind:to="{ name: 'home' }">
+                Home
+              </router-link>
+              <router-link
+                class="navbar-item has-text-weight-bold"
+                v-bind:to="{ name: 'AboutView' }"
+              >About
+              </router-link>
               <router-link
                 v-if="this.$store.state.token == ''"
                 class="button is-dark is-outlined navbar-item"
@@ -52,18 +50,6 @@
               >
                 Logout
               </button>
-              <router-link
-                class="button is-danger is-outlined"
-                v-bind:to="{ name: 'CartView' }"
-              >
-                <figure class="image container is-34x34">
-                  <img
-                    src="https://cdn3.iconfinder.com/data/icons/web-and-internet-icons/512/Shopping_Cart-512.png"
-                    alt="image bulma">
-                </figure>
-                <span class="badge" v-if="this.$store.state.itemInCart !== 0">
-                  {{this.$store.state.itemInCart}}</span>
-              </router-link>
             </div>
           </div>
         </div>
